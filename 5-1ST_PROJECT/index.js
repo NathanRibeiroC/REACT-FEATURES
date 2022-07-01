@@ -1,3 +1,11 @@
+/**
+ * don't need to put .js since it is default extension for importing
+ * Header Component could be called another name since we are using export deafault, so it is the only possibility
+ */
+import HeaderComponent from "./Header"; 
+import FooterComponent from "./Footer";
+import AbcOrderedList from "./MainContent";
+
 // const element = <h1 className="header">This is JSX</h1>;
 // console.log(element);
 // const page = (
@@ -93,17 +101,17 @@
  * @description PART-1: challenge, create <ol> and load it to React DOM
  */
 
-function AbcOrderedList() {
-  return (
-    <ol>
-      <li>A</li>
-      <li>B</li>
-      <li>C</li>
-      <li>D</li>
-      <li>E</li>
-    </ol>
-  );
-}
+// function AbcOrderedList() {
+//   return (
+//     <ol>
+//       <li>A</li>
+//       <li>B</li>
+//       <li>C</li>
+//       <li>D</li>
+//       <li>E</li>
+//     </ol>
+//   );
+// }
 
 /**
  * @description PART2
@@ -118,46 +126,24 @@ function AbcOrderedList() {
 - Add a `footer` after the list that says: 
     "© 20xx <last name here> development. All rights reserved."
 */
-function HeaderComponent() {
-  return (
-    <header>
-      <nav>
-        <img
-          src="react-removebg-preview.png"
-          alt="react logo"
-          width="90"
-          height="60"
-        />
-        <h1>ABC unordered list</h1>
-      </nav>
-    </header>
-  );
-}
-
-function FooterComponent() {
-  return (
-    <footer>
-       <small>© 20xx Nathanzeira development. All rights reserved.</small>
-    </footer>
-  );
-}
 
 /**
- * @description CHALLENGE: PARENT AND CHILD COMPONENT
+ * @description CHALLENGE: PARENT AND CHILD COMPONENT, CONCEPT OF COMPOSABILITY
  */
 
- function AbcOrderedListParent() {
+//Parent component
+function App() {
   return (
-    <ol>
-      <li>A</li>
-      <li>B</li>
-      <li>C</li>
-      <li>D</li>
-      <li>E</li>
-    </ol>
+    <div>
+      {/* Children component */}
+      <HeaderComponent/>
+      <AbcOrderedList/>
+      <FooterComponent/>
+    </div>
   );
 }
 
-ReactDOM.render(<HeaderComponent />, document.getElementById("header"));
-ReactDOM.render(<AbcOrderedList />, document.getElementById("root"));
-ReactDOM.render(<FooterComponent />, document.getElementById("footer"));
+// ReactDOM.render(<HeaderComponent />, document.getElementById("header"));
+// ReactDOM.render(<AbcOrderedList />, document.getElementById("root"));
+// ReactDOM.render(<FooterComponent />, document.getElementById("footer"));
+ReactDOM.render(<App/>, document.getElementById("page"));

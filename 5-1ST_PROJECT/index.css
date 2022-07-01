@@ -1,0 +1,29 @@
+.nav{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: rgb(133, 121, 121);
+}
+
+.nav-items{
+    list-style: none;
+    display: flex;
+    color: white;
+}
+
+/* DON'T NEED TO GIVE THE CLASS NAME TO ALL <li> */
+.nav-items > li{
+    padding: 10px;
+    color: white;
+}
+
+.nav-logo{
+    width:80px;
+    height:50px;
+}
+
+.footer{
+    background-color: gray;
+    color: white;
+    padding: 1%;
+}
