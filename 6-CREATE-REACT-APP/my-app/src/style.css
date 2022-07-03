@@ -5,6 +5,7 @@
 body{
     margin:0;
     font-family: Inter, sans-serif;
+    background-color: #282D35;
 }
 
 /* NAVBAR */
@@ -41,7 +42,12 @@ body{
 
 /* MAIN SECTION */
 .main{
-    background-color: #282D35;
+    padding: 57px 27px;
+    color: white;
+    background-image: url("./images/reactjs-icon\ 2.png");
+    background-repeat: no-repeat;
+    background-position-x: right;
+    background-position-y: center;
 }
 
 .main--title, .main--ul{
@@ -55,8 +61,17 @@ body{
     margin-left: 27px;
     margin-right: 143px;
     margin-bottom: 46px;
+    letter-spacing: -0.05em;
+    font-style: normal;
 }
 
-.main--ul{
+.main--ul > li{
+    line-height: 19px;
+    padding-block: 10px;
+    max-width: 400px;
+}
 
+.main--ul > li::marker{
+    font-size: 1.4rem;
+    color: #61DAFB;
 }
