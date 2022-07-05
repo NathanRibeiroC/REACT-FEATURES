@@ -1,0 +1,52 @@
+1. What do props help us accomplish?
+R: Build dynamic content pages.
+   Makes component more reusable
+
+
+2. How do you pass a prop into a component?
+R: Through embedding the props on the tags of a component.
+
+
+3. Can I pass a custom prop (e.g. `blahblahblah={true}`) to a native
+   DOM element? (e.g. <div blahblahblah={true}>) Why or why not?
+R: No, because the prop needs to be applied on a component tag.
+
+
+4. How do I receive props in a component?
+function Navbar(props) {
+    return (
+        <header>
+            ...
+        </header>
+    )
+}
+
+R: Passing props as a parameter on the function and using it as a JS object.
+
+
+5. What data type is `props` when the component receives it?
+R: A JS object.
+
+Common practice when handling props
+
+From ES6 >
+
+const person = {
+    img: "./images/mr-whiskerson.png",
+    name: "Mr.Whiskerson",
+    phone: "(555) 999-000",
+    email: "mr-whiskerson@catnapz.com"
+}
+
+const {img, name} = person
+
+console.log(img) --> ./images/mr-whiskerson.png
+console.log(name) --> Mr.Whiskerson
+
+so what we can do is on the headers of a component
+
+Ex:
+
+export default function Contact({img, name, phone, email}){
+    <...>
+}
