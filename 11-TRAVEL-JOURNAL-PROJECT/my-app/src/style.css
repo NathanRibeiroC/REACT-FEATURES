@@ -1,0 +1,45 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: "Inter", sans-serif;
+  background-color: gray;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10%;
+}
+
+/* MAIN CONTAINER */
+.main--container{
+  width: 550px;
+  height: 704px;
+  background-color: white;
+  /* display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center; */
+}
+
+/* NAVBAR */
+
+.nav{
+  background-color: #F55A5A;
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  justify-content: center;
+  height: 100px;
+}
+
+.nav > *{
+  margin: 0;
+}
+
+.nav > img{
+  padding-right: 7px;
+}

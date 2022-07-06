@@ -62,10 +62,12 @@ body {
 .card{
   width: 175px;
   font-size: 12px;
+  position: relative;
 }
 
 .card--image{
-  width: 100%;
+  width: 176px;
+  height: 235px;
   border-radius: 9px;
 }
 
@@ -89,4 +91,27 @@ body {
 
 .card--star{
   height: 14px;
+}
+
+/* CARDS */
+
+.cards{
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  align-content: center;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  padding: 20px;
+}
+
+/* CARDS BADGE */
+.card--badge{
+  position: absolute;
+  top: 6px;
+  left: 6px;
+  background-color: white;
+  padding: 5px 7px;
+  border-radius: 2px;
+  font-weight: bold;
 }

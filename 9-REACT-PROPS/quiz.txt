@@ -1,0 +1,13 @@
+1. What does the `.map()` array method do?
+R: Given an arrar .map will perform a logic on each element of the array, and returns a new array
+with the logic applied to each of the elements, and this elements will be placed at the same index
+
+
+2. What do we usually use `.map()` for in React?
+R: To create JSX elements based on some raw data.
+
+
+3. Why is using `.map()` better than just creating the components
+   manually by typing them out?
+R: Saves time, avoid hardcoding data, and lets update data dynamically on the page
+as the data update

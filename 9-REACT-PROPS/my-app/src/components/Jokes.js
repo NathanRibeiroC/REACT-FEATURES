@@ -53,7 +53,8 @@ import "../style.css";
 export default function Contact(props) {
     return (
       <section className="joke--section">
-        {props.setup && <h1>Setup: {props.setup}</h1>}
+        {/* {props.setup && <h1>Setup: {props.setup}</h1>} */}
+        <h1>Setup: {props.setup}</h1>
         <p>Punchline: {props.punchline}</p>
       </section>
     )
