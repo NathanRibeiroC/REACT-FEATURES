@@ -5,24 +5,27 @@ import earthIcon from "../images/earth-icon.svg";
 import gpsIcon from "../images/gps-icon.svg";
 import japanImage from "../images/japan.png";
 
-function ContentBox() {
+function ContentBox(props) {
+  var flag=true
+  if(props.title==="Sydney Opera House"){
+    flag=false
+  }
   return (
     <summary className="summary--section">
-      <img src={japanImage} />
+      <img src={props.imageUrl} />
       <section className="info--section">
         <section className="location--section">
           <img src={gpsIcon} />
-          <h1>JAPAN</h1>
-          <h2>View on Google Maps</h2>
+          <h1>{props.location}</h1>
+          <h2><a href={props.googleMapsUrl}>View on Google Maps</a></h2>
         </section>
-        <h1>Mount Fuji</h1>
-        <h2>12 Jan, 2021 - 24 Jan, 2021</h2>
+        <h1>{props.title}</h1>
+        <h2>{props.startDate} - {props.endDate}</h2>
         <p>
-          Mount Fuji is the tallest mountain in Japan, standing at 3,776 meters
-          (12,380 feet). Mount Fuji is the single most popular tourist site in
-          Japan, for both Japanese and foreign tourists.
+        {props.description}
         </p>
       </section>
+      {flag && <div className="line--div"></div>}
     </summary>
   );
 }
