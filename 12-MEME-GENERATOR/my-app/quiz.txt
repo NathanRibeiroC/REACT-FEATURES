@@ -1,0 +1,41 @@
+1. How would you describe the concept of "state"?
+R: State is a value managed within the component, in order
+to attend some logic. Or a value a component can maintain
+ between render cycles.
+
+
+2. When would you want to use props instead of state?
+R: In situations which you want to pass a value to a component
+as a reference and you don't want that reference to be changed
+within the component. Exemple when you want to pass data to get
+displayed on the screen.
+
+3. When would you want to use state instead of props?
+R: In situations which you want a value to be managed within the component.
+(And "remember" those values even when React re-renders the component).
+
+4. What does "immutable" mean? Are props immutable? Is state immutable?
+R: Immutable means something that can't be changed, props are immutable
+while state is not immutable.
+
+
+//analogy: variable name = props and timeOfDay = state, greeting = component
+const date = new Date();
+const hours = date.getHours();
+let timeOfDay
+
+function greeting(name){
+if(4<=hours<12){
+    timeOfDay = "morning"
+}else if(12<=hours<17){
+    timeOfDay = "afternoon"
+}else if(17<=hours<20){
+    timeOfDay = "evening"
+}else{
+    timeOfDay = "night"
+}
+
+return `Good ${timeOfDay}, ${name}!`
+}
+
+console.log(greeting("Bob"))
