@@ -13,7 +13,7 @@ body {
 }
 
 /* APP CONTAINER */
-.app-container{
+.app-container {
   width: 550px;
   height: 550px;
   background-color: white;
@@ -23,52 +23,64 @@ body {
 }
 
 /* HEADER */
-.header{
+.header {
   width: 550px;
   height: 65px;
   color: white;
   display: flex;
   align-items: center;
-  background: linear-gradient(90deg, #672280 1.18%, #A626D3 100%);
+  background: linear-gradient(90deg, #672280 1.18%, #a626d3 100%);
   padding: 20px;
 }
 
-.header--image{
+.header--image {
   margin-right: 6px;
 }
 
-.header--title{
+.header--title {
   font-size: 1.25rem;
   margin-right: auto;
 }
 
-.header--project{
+.header--project {
   font-size: 0.75rem;
   font-weight: 500;
 }
 
 /* MEME */
 
-.form{
+.form {
   display: grid;
   grid-template: 40px 40px / 1fr 1fr;
   gap: 17px;
   padding: 36px;
 }
 
-.form--button{
+.form--button {
   grid-column: 1/-1;
   border-radius: 5px;
-  background: linear-gradient(90.41deg, #711F8D 1.14%, #A818DA 100%);
+  background: linear-gradient(90.41deg, #711f8d 1.14%, #a818da 100%);
   color: white;
   border: none;
   cursor: pointer;
 }
 
-.form--input{
+.form--input {
   border-radius: 5px;
-  border: 1px solid #D5D4D8;
+  border: 1px solid #d5d4d8;
   text-indent: 5px;
+}
+
+.img--div{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.random--img {
+  max-width: 100%;
+  /* height: 100%; */
+  border-radius: 2px;
 }
 
 /* STATE */
@@ -84,13 +96,13 @@ body {
   border: none;
   cursor: pointer;
   background-color: #737373;
-  color: #D9D9D9;
+  color: #d9d9d9;
   font-size: 1.5rem;
 }
 
 .counter > button:hover {
   background-color: #404040;
-  color: #D9D9D9;
+  color: #d9d9d9;
 }
 
 .counter > button:focus {

@@ -2,13 +2,18 @@
 import React, { useState } from "react";
 
 export default function StateStudy() {
-  const [anyName, func] = React.useState("Yes");
 
-  function handleClick() {
-    func("No");
+  const [count, func] = React.useState(0);
+
+  function addClick() {
+    func(prevState => prevState+1)
   }
 
-  console.log(anyName);
+  function menusClick(){
+    func(prevState => prevState-1)
+  }
+
+  // console.log(anyName);
 
   return (
     // <div className="state">
@@ -18,11 +23,11 @@ export default function StateStudy() {
     //     </div>
     // </div>
     <div className="counter">
-      <button className="counter--minus">–</button>
+      <button onClick={menusClick} className="counter--minus">–</button>
       <div className="counter--count">
-        <h1>0</h1>
+        <h1>{count}</h1>
       </div>
-      <button className="counter--plus">+</button>
+      <button onClick={addClick} className="counter--plus">+</button>
     </div>
   );
 }

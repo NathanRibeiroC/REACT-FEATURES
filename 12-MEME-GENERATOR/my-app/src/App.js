@@ -7,7 +7,7 @@ function App() {
     <div className="app-container">
       <Header/>
       <Meme/>
-      <StateStudy/>
+      {/* <StateStudy/> */}
     </div>
   );
 }
