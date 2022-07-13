@@ -5,6 +5,8 @@ export default function StateStudy() {
 
   const [count, func] = React.useState(0);
 
+  const [thingsArray, setThingsArray] = React.useState(["Thing1","Thing2"]);
+
   function addClick() {
     func(prevState => prevState+1)
   }
@@ -13,6 +15,9 @@ export default function StateStudy() {
     func(prevState => prevState-1)
   }
 
+  function pushArray(){
+    setThingsArray(prevThingsArray => [...prevThingsArray, `Thing ${prevThingsArray.length}`])
+  }
   // console.log(anyName);
 
   return (
