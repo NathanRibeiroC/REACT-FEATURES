@@ -1,0 +1,14 @@
+1. What is "conditional rendering"?
+R: Is the resource present on jsx, that through logic lets you choose
+if you want or not to render a html element or component
+
+2. When would you use &&?
+R: When do you want to render some element or component if a condition
+is true, and if oposite not show.
+
+3. When would you use a ternary?
+R: When do you want to decide between two options
+
+4. What if you need to decide between > 2 options on
+   what to display?
+R: Use if...else or switch statement.
