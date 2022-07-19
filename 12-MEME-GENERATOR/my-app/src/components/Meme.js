@@ -11,49 +11,60 @@ export default function Meme() {
   const [memeImg, setMemeImg] = React.useState({
     topText: "",
     bottomText: "",
-    randomImage: "http://i.imgflip.com/1bij.jpg"
-});
-
-  // const [isGoingOut, setState1] = React.useState(true);
-  // challenge
-  // const [things, setThings] = React.useState(["Thing1","Thing2"])
+    randomImage: "http://i.imgflip.com/1bij.jpg",
+  });
 
   function getMemeImage() {
     const memesArray = allMemesImage.data.memes;
     const randomNum = Math.floor(Math.random() * memesArray.length);
-    url = allMemesImage.data.memes[randomNum].url;
-    setMemeImg(prevImg => ({...prevImg, //without this all the content will be erased
-      randomImage: url
-    }))
 
-    // challenge
-    // const newThingText = `Thing${things.length + 1}`
-    // setThings(prevState => [...prevState, newThingText])
+    url = allMemesImage.data.memes[randomNum].url;
+    setMemeImg((prevImg) => ({
+      ...prevImg, //without this all the content will be erased
+      randomImage: url,
+    }));
   }
 
-  // function toggleState(){
-  //   setState1(isGoingOut => !isGoingOut)
-  // }
-
-  // challenge
-  // const thingsElements = things.map(thing => <p>key={thing}:{thing}</p>)
+  function handleChange(event) {
+    const {name, value} = event.target;
+    setAllMemeImages((prevFormData) => {
+      return {
+        ...prevFormData,
+        [name]: value,
+      };
+    });
+    console.log(allMemesImage);
+  }
 
   return (
-    <div className="form">
-      <input className="form--input" placeholder="Top text" type="text"></input>
-      <input
-        className="form--input"
-        placeholder="Bottom text"
-        type="text"
-      ></input>
-      {/* <button onClick={handleClick} className="form--button"> */}
-      <button onClick={getMemeImage} className="form--button">
-        Get a new meme image &#128444;&#65039;
-      </button>
-      {memeImg.randomImage && <img className="random--img" src={memeImg.randomImage} />}
-      {/* <div onClick={toggleState}>
-        <h1>{isGoingOut ? "Yes" : "No"}</h1>
-      </div> */}
-    </div>
+    <main>
+      {" "}
+      <div className="form">
+        <input
+          className="form--input"
+          placeholder="Top text"
+          type="text"
+          onChange={handleChange}
+          name="topText"
+          value={allMemesImage.topText}
+        ></input>
+        <input
+          className="form--input"
+          placeholder="Bottom text"
+          type="text"
+          onChange={handleChange}
+          name="bottomText"
+          value={allMemesImage.bottomText}
+        ></input>
+        <button onClick={getMemeImage} className="form--button">
+          Get a new meme image &#128444;&#65039;
+        </button>
+      </div>
+      <div className="meme">
+        <img src={memeImg.randomImage} className="meme--image" />
+        <h2 className="meme--text top">{allMemesImage.topText}</h2>
+        <h2 className="meme--text bottom">{allMemesImage.bottomText}</h2>
+      </div>
+    </main>
   );
 }

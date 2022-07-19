@@ -2,6 +2,8 @@ import React from "react";
 import Joke from "./exercicios/ExJokes";
 import jokesData from "./exercicios/jokesData";
 import Form from "./exercicios/FORM/Form";
+import Form2 from "./exercicios/FORM/Form2";
+import Fetch from "./exercicios/API/Fetch";
 
 export default function App() {
   const [messages, setMessages] = React.useState(["a"]);
@@ -26,7 +28,7 @@ export default function App() {
 //   </label>
 //   <input type="submit" value="Submit" />
 // </form>
-<Form/>
+<Fetch/>
   );
   // const jokeElements = jokesData.map(joke => {
   //     return (
