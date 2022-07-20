@@ -5,6 +5,7 @@ import Form from "./exercicios/FORM/Form";
 import Form2 from "./exercicios/FORM/Form2";
 import Fetch from "./exercicios/API/Fetch";
 import UseEffect from "./exercicios/API/UseEffect";
+import Async from "./exercicios/ASYNC/Async";
 
 export default function App() {
   const [messages, setMessages] = React.useState(["a"]);
@@ -29,7 +30,7 @@ export default function App() {
 //   </label>
 //   <input type="submit" value="Submit" />
 // </form>
-<UseEffect/>
+<Async/>
   );
   // const jokeElements = jokesData.map(joke => {
   //     return (

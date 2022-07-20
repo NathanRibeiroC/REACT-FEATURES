@@ -1,0 +1,15 @@
+1. What is a "side effect" in React? What are some examples?
+R: Effects React can't handle, api calls, internal storage
+
+2. What is NOT a "side effect" in React? Examples?
+R: State change of a component, keeping the UI in sync with the data,
+render DOM elements
+
+3. When does React run your useEffect function? When does it NOT run
+   the effect function?
+R: 
+- Runs after every first time a component is loaded, if array is empty
+- Runs every time after a load , [count] variable changed state or not declared array
+
+4. How would you explain what the "dependecies array" is?
+R: Group of variables you are watching to be changed.
