@@ -1,0 +1,15 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  padding: 50%;
+}
+
+.main--container{
+  width: 360px;
+  height: 379px;
+  background-color: #0B2434;
+}
