@@ -42,6 +42,7 @@ p{
   font-size: 13px;
   text-align: center;
   color: #4A4E74;
+  margin-bottom: 31px;
 }
 
 /* BUTTON SECTION */
@@ -49,7 +50,6 @@ p{
 .dice--button{
   width: 36px;
   height: 36px;
-  background-color: #FFFFFF;
   color: #2B283A;
   border: none;
   border-radius: 10%;
@@ -58,4 +58,32 @@ p{
   font-size: 21px;
   -webkit-box-shadow: 0px 5px 9px -1px rgba(0,0,0,0.17); 
   box-shadow: 0px 5px 9px -1px rgba(0,0,0,0.17);
+  cursor: pointer;
+}
+
+.button--section{
+  display: grid;
+  grid-template: auto auto/ repeat(5, 1fr);
+  gap: 20px;
+  margin-bottom: 26px;
+}
+
+.roll--button{
+  width: 92px;
+  height: 36px;
+  border-radius: 5px;
+  border: none;
+  background-color: #5035FF;
+  font-family: "Karla", sans-serif;
+  font-weight: 700;
+  color: white;
+  cursor: pointer;
+}
+
+.roll--button:focus{
+  outline: none;
+}
+
+.roll--button:active{
+  box-shadow: inset 5px 5px 10px -3px rgba(0,0,0,0.7);
 }
