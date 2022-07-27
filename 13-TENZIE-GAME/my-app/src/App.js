@@ -11,7 +11,11 @@ function App() {
   const [tenzies, setTenzies] = React.useState(false);
 
   React.useEffect(function () {
-    console.log("State Changed")
+     var arr = []
+     dicesArray.map((values, index) => {
+      if(values.isHeld)
+      return 0
+     })
   }, [dicesArray]);
 
   function allNewDice() {
