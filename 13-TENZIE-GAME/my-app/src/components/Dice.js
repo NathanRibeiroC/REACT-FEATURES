@@ -26,14 +26,14 @@ function Dice(props) {
       </section> */}
 
       <section className="face--four">
-        <div className="column1">
-          <span className="dot1"></span>
-          <span className="dot2"></span>
-        </div>
-        <div className="column2">
-          <span className="dot3"></span>
-          <span className="dot4"></span>
-        </div>
+        <section>
+          <span className="dot"></span>
+          <span className="dot"></span>
+        </section>
+        <section>
+          <span className="dot"></span>
+          <span className="dot"></span>
+        </section>
       </section>
     </button>
   );

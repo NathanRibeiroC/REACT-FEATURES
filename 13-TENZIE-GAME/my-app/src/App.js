@@ -15,12 +15,12 @@ function App() {
       for (let i = 0; i < dicesArray.length; i++) {
         if (i != dicesArray.length - 1) {
           console.log("ENTROU");
-          if (dicesArray[i].isHeld != dicesArray[i + 1].isHeld) {
+          if (dicesArray[i].isHeld !== dicesArray[i + 1].isHeld) {
             console.log("ENTROU1");
             setTenzies(false);
             break;
           }
-          if (dicesArray[i].value != dicesArray[i + 1].value) {
+          if (dicesArray[i].value !== dicesArray[i + 1].value) {
             setTenzies(false);
             break;
           }
