@@ -10,13 +10,31 @@ function App() {
 
   const [tenzies, setTenzies] = React.useState(false);
 
-  React.useEffect(function () {
-     var arr = []
-     dicesArray.map((values, index) => {
-      if(values.isHeld)
-      return 0
-     })
-  }, [dicesArray]);
+  React.useEffect(
+    function () {
+      for (let i = 0; i < dicesArray.length; i++) {
+        if (i != dicesArray.length - 1) {
+          console.log("ENTROU");
+          if (dicesArray[i].isHeld != dicesArray[i + 1].isHeld) {
+            console.log("ENTROU1");
+            setTenzies(false);
+            break;
+          }
+          if (dicesArray[i].value != dicesArray[i + 1].value) {
+            setTenzies(false);
+            break;
+          }
+          if (!dicesArray[i].isHeld) {
+            setTenzies(false);
+            break;
+          }
+        }
+        setTenzies(true);
+      }
+      console.log("TENZIES", tenzies);
+    },
+    [dicesArray]
+  );
 
   function allNewDice() {
     var arr = [];
@@ -36,7 +54,18 @@ function App() {
       })
     );
   }
+  
+  function resetGame() {
+    console.log('trying to reset')
+    setDicesArray((prevSquares) =>
+      prevSquares.map((square, index) => {
+        const allNew = allNewDice();
 
+        return !square.isHeld ? square : { ...square, value: allNew[index] , isHeld: false};
+      })
+    );
+  }
+  
   function toogle(id) {
     setDicesArray((prevSquares) =>
       prevSquares.map((square) => {
@@ -67,10 +96,21 @@ function App() {
           each die to freeze it at its current value
           <br />
           between rolls.
+          <br />
+          <br />
+          {tenzies && <span><b>You Won!</b></span>}          
         </p>
         <section className="button--section">{dices}</section>
-        <button onClick={rollDice} className="roll--button">
-          Roll
+        <button
+          style={
+            tenzies
+              ? { backgroundColor: "green" }
+              : { backgroundColor: "#5035FF" }
+          }
+          onClick={!tenzies ? rollDice : resetGame}
+          className="roll--button"
+        >
+          {tenzies ? "New Game" : "Roll"}
         </button>
       </section>
     </main>

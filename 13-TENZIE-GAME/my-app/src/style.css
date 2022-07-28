@@ -32,7 +32,7 @@ h1{
   font-weight: 700;
   font-size: 26px;
   color: #2B283A;  
-  margin-top: 30px;
+  margin-top: 20px;
   margin-bottom: -12px;
 }
 
@@ -78,6 +78,7 @@ p{
   font-weight: 700;
   color: white;
   cursor: pointer;
+  margin: 0;
 }
 
 .roll--button:focus{
@@ -86,4 +87,82 @@ p{
 
 .roll--button:active{
   box-shadow: inset 5px 5px 10px -3px rgba(0,0,0,0.7);
+}
+
+/* DICE FACES */
+/* ONE */
+.face--one{
+   display: block;
+   width: 12px;
+   height: 12px;
+   margin-left: 6px;
+   border-radius: 50%;
+   background-color:black
+}
+
+/* TWO */
+.face--two{
+  display: flex;
+  margin-bottom: 15px;
+  flex-direction: column;
+  margin-top: 5px;
+}
+
+.face--two .dot{
+  width: 8px;
+  height: 8px;
+  background-color:black;
+  border-radius: 50%;
+}
+
+.face--two .dot:nth-of-type(1){
+  margin-left: 0px;
+}
+
+.face--two .dot:nth-of-type(2){
+  margin-left: 18px;
+  margin-top: 10px;
+}
+
+/* THREE */
+.face--three{
+  display: flex;
+  margin-bottom: 15px;
+  flex-direction: column;
+  margin-top: 5px;
+}
+
+.face--three .dot{
+  width: 8px;
+  height: 8px;
+  background-color:black;
+  border-radius: 50%;
+}
+
+.face--three .dot:nth-of-type(1){
+  margin-left: 0px;
+}
+
+.face--three .dot:nth-of-type(2){
+  margin-left: 9px;
+}
+
+.face--three .dot:nth-of-type(3){
+  margin-left: 18px;
+}
+
+/* FOUR */
+
+.face--four{
+  display: flex;
+  margin-bottom: 15px;
+  flex-direction: column;
+  margin-top: 5px;
+}
+
+.dot1{
+  width: 8px;
+  height: 8px;
+  background-color:black;
+  border-radius: 50%;
 }
