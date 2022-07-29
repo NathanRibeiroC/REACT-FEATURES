@@ -6,3 +6,5 @@
 ## Project Travel Journal (using props)
 ![travel-journal](https://user-images.githubusercontent.com/80288857/177888324-e9b1d696-d5dd-4a57-8f53-b1503288ee13.gif)
 
+## Tenzies Game
+![tenzies](https://user-images.githubusercontent.com/80288857/181671151-87272c22-afe9-490c-85d1-8ba247b56be8.gif)
