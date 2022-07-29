@@ -10,6 +10,10 @@ function App() {
 
   const [tenzies, setTenzies] = React.useState(false);
 
+  const [numRolls, setNumRolls] = React.useState(0);
+
+  const [timeTrack, setTimeTrack] = React.useState(new Date());
+
   React.useEffect(
     function () {
       for (let i = 0; i < dicesArray.length; i++) {
@@ -36,6 +40,13 @@ function App() {
     [dicesArray]
   );
 
+  React.useEffect(
+    function(){
+      localStorage.setItem("timeRecord", Number.MAX_VALUE);
+      localStorage.setItem("besTimeFormated", "")
+    },[]
+  );
+
   function allNewDice() {
     var arr = [];
     while (arr.length < 10) {
@@ -45,6 +56,31 @@ function App() {
     return arr;
   }
 
+  function verifyScore(value){
+    var bestScore = localStorage.getItem("timeRecord");
+
+    if(value < bestScore){
+      localStorage.setItem("timeRecord", value);
+      return true;
+    }else{
+      return false;
+    }
+  }
+
+  function parseTime() {
+    var finalDate = new Date();
+    var msec = finalDate - timeTrack;
+    var hh = Math.floor(msec / 1000 / 60 / 60);
+    msec -= hh * 1000 * 60 * 60;
+    var mm = Math.floor(msec / 1000 / 60);
+    msec -= mm * 1000 * 60;
+    var ss = Math.floor(msec / 1000);
+    var bestScore = verifyScore(msec);
+    var timeFormated = "hh : " + hh + " mm: " + mm + " ss: " + ss;
+    if(bestScore) localStorage.setItem("besTimeFormated", timeFormated);
+    return timeFormated;
+}
+
   function rollDice() {
     setDicesArray((prevSquares) =>
       prevSquares.map((square, index) => {
@@ -53,10 +89,11 @@ function App() {
         return square.isHeld ? square : { ...square, value: allNew[index] };
       })
     );
+
+    setNumRolls(prevValue => prevValue+1);
   }
   
   function resetGame() {
-    console.log('trying to reset')
     setDicesArray((prevSquares) =>
       prevSquares.map((square, index) => {
         const allNew = allNewDice();
@@ -64,6 +101,8 @@ function App() {
         return !square.isHeld ? square : { ...square, value: allNew[index] , isHeld: false};
       })
     );
+
+    setNumRolls(0);
   }
   
   function toogle(id) {
@@ -90,15 +129,13 @@ function App() {
   return (
     <main className="main--container">
       <section className="sub--container">
-        <h1>Tenzies</h1>
+        <h1>Tenzies <span className="winner--tag">{tenzies && ' - (YOU WON)'}</span></h1>
         <p>
           Roll until all dice are the same. Click <br />
           each die to freeze it at its current value
           <br />
           between rolls.
-          <br />
-          <br />
-          {tenzies && <span><b>You Won!</b></span>}          
+          <br/>       
         </p>
         <section className="button--section">{dices}</section>
         <button
@@ -112,6 +149,13 @@ function App() {
         >
           {tenzies ? "New Game" : "Roll"}
         </button>
+        <footer>
+          <p>
+            <span><b>Num of rolls: </b>{numRolls}</span>
+            {tenzies && <span><b> - Time track: </b>{parseTime()}</span>}
+            {tenzies && <span><b> - Local Storage Best Time: </b>{localStorage.getItem("besTimeFormated")}</span>}
+          </p>
+        </footer>
       </section>
     </main>
   );

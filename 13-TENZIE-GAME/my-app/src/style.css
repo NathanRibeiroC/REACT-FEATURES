@@ -42,10 +42,14 @@ p{
   font-size: 13px;
   text-align: center;
   color: #4A4E74;
-  margin-bottom: 31px;
+  margin-bottom: 10px;
 }
 
 /* BUTTON SECTION */
+
+.winner--tag{
+  font-size: 20px;
+}
 
 .dice--button{
   width: 36px;
@@ -79,6 +83,7 @@ p{
   color: white;
   cursor: pointer;
   margin: 0;
+  margin-bottom: 5px;
 }
 
 .roll--button:focus{
@@ -93,8 +98,8 @@ p{
 /* ONE */
 .face--one{
    display: block;
-   width: 12px;
-   height: 12px;
+   width: 8px;
+   height: 8px;
    margin-left: 6px;
    border-radius: 50%;
    background-color:black
@@ -179,4 +184,82 @@ p{
   background-color: black;
   border-radius: 50%;
   margin-bottom: 10px;
+}
+
+/* FIVE */
+
+.face--five{
+  display: flex;
+  margin-bottom: 15px;
+  flex-direction: row;
+  margin-top: 5px;
+  justify-content: space-between;
+}
+
+.face--five section{
+  display: flex;
+  flex-direction: column;
+}
+
+.face--five section .dot{
+  width: 8px;
+  height: 8px;
+  background-color:black;
+  border-radius: 50%;
+}
+
+.face--five section .dot{
+  width: 8px;
+  height: 8px;
+  background-color: black;
+  border-radius: 50%;
+  margin-bottom: 10px;
+}
+
+.face--five .column1{
+  margin-left: -2px;
+}
+
+.face--five .column2{
+  margin-right: 2px;
+  margin-left: 2px;
+  margin-top: 9px;
+}
+
+/* SIX */
+
+.face--six{
+  display: flex;
+  margin-bottom: 15px;
+  flex-direction: row;
+  margin-top: 5px;
+  justify-content: space-between;
+  margin-top: 4px;
+}
+
+.face--six section{
+  display: flex;
+  flex-direction: column;
+}
+
+.face--six section .dot{
+  width: 8px;
+  height: 8px;
+  background-color:black;
+  border-radius: 50%;
+  margin-bottom: 2px;
+}
+
+.face--five section .dot{
+  width: 8px;
+  height: 8px;
+  background-color: black;
+  border-radius: 50%;
+  margin-bottom: 10px;
+}
+
+/* FOOTER */
+footer{
+  font-family: "Inter", sans-serif;
+  font-size: 5px;
 }
