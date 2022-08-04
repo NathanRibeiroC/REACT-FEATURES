@@ -1,11 +1,17 @@
-import '../index.css';
+import React from 'react';
+import "../index.css";
 
-export default function StartScreen() {
+/**
+ * Component that represents the start page
+ * @param {startQuizz} props 
+ * @returns 
+ */
+export default function StartScreen(props) {
   return (
-    <summary className='start--summary'>
-        <h1>Quizzical</h1>
-        <h2>Some description if needed</h2>
-        <button>Start Quiz</button>
+    <summary className="start--summary">
+      <h1>Quizzical</h1>
+      <h2>Some description if needed</h2>
+      <button onClick={() => props.startQuizz()}>Start Quiz</button>
     </summary>
   );
 }
