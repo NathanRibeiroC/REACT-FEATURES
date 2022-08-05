@@ -107,3 +107,13 @@ body {
   display: flex;
   flex-direction: row;
 }
+
+.hr--linediv{
+  margin-top: 15px;
+  background-color: #DBDEF0;
+  width: 80%;
+  height: 0.79px;
+  border: none;
+  margin-left: 5%;
+  margin-bottom: 16px;
+}
