@@ -1,7 +1,7 @@
 import React from "react";
 import "../index.css";
 import Question from "./Question";
-import { nanoid } from 'nanoid';
+import { nanoid } from "nanoid";
 
 export default function QuizzPage() {
   /**
@@ -12,8 +12,8 @@ export default function QuizzPage() {
   /**
    * Converts object type to array type in order
    * code can iterate over it
-   * @param {object type data} data 
-   * @returns 
+   * @param {object type data} data
+   * @returns
    */
   function objectToArray(data) {
     let newArray = [];
@@ -22,43 +22,80 @@ export default function QuizzPage() {
   }
 
   /**
-   * Fecth request
+   * Fetch request
    */
   const otbFetch = fetch("https://opentdb.com/api.php?amount=5&encode=url3986")
     .then((response) => response.json())
     .then((user) => {
       return user.results;
     });
-  
+
+  /**
+   * Fisher-Yates Shuffle algorithm
+   * @param {array to be shuffled} array
+   * @returns
+   */
+  function shuffleQuestions(array) {
+    let currentIndex = array.length,
+      randomIndex;
+
+    // While there remain elements to shuffle.
+    while (currentIndex !== 0) {
+      // Pick a remaining element.
+      randomIndex = Math.floor(Math.random() * currentIndex);
+      currentIndex--;
+
+      // And swap it with the current element.
+      [array[currentIndex], array[randomIndex]] = [
+        array[randomIndex],
+        array[currentIndex],
+      ];
+    }
+
+    return array;
+  }
+
   /**
    * Async wait for fetch request result
    */
   const parseFetchAsync = async () => {
+    //fetches asyncronously 5 questions from otb api
     const otbObj = await otbFetch;
+
+    //converts fetched data from object --> array
     const fetched = objectToArray(otbObj);
-    // console.log('FETCHED: ',fetched);
-    fetched.map((feRes)=>{
-      setQuestionStates((prev) => { return(
-        [...prev, 
-        {
-          id: nanoid(),
-          question: decodeURIComponent(feRes[1].question),
-          correctAlternative : decodeURIComponent(feRes[1].correct_answer),
-          incorrectAlternative1 : decodeURIComponent(feRes[1].incorrect_answers[0]),
-          incorrectAlternative2 : decodeURIComponent(feRes[1].incorrect_answers[1]),
-          incorrectAlternative3 : decodeURIComponent(feRes[1].incorrect_answers[2]),
-          isButton1Pressed: false,
-          isButton2Pressed: false,
-          isButton3Pressed: false,
-          isButton4Pressed: false,
-          button1Id: nanoid(),
-          button2Id: nanoid(),
-          button3Id: nanoid(),
-          button4Id: nanoid()
-        }]);
-      })
+
+    //update state based on fetched data
+    fetched.map((feRes) => {
+      setQuestionStates((prev) => {
+        //shuffles questions when assigning state, in order correct answer is not always on the same position
+        const shuffledQuestions = [
+          feRes[1].correct_answer,
+          feRes[1].incorrect_answers[0],
+          feRes[1].incorrect_answers[1],
+          feRes[1].incorrect_answers[2],
+        ];
+        return [
+          ...prev,
+          {
+            id: nanoid(),
+            question: decodeURIComponent(feRes[1].question),
+            alternative1: decodeURIComponent(shuffledQuestions[0]),
+            alternative2: decodeURIComponent(shuffledQuestions[1]),
+            alternative3: decodeURIComponent(shuffledQuestions[2]),
+            alternative4: decodeURIComponent(shuffledQuestions[3]),
+            isButton1Pressed: false,
+            isButton2Pressed: false,
+            isButton3Pressed: false,
+            isButton4Pressed: false,
+            button1Id: nanoid(),
+            button2Id: nanoid(),
+            button3Id: nanoid(),
+            button4Id: nanoid(),
+          },
+        ];
+      });
     });
-    // setfetchResult(fetched);
   };
 
   /**
@@ -69,47 +106,82 @@ export default function QuizzPage() {
     parseFetchAsync();
   }, []);
 
-  React.useEffect(function () {
-    console.log(questionStates)
-  }, [questionStates]);
-
-  function selectAnOption(btnId, key){
-    questionStates.map((quesRes)=>{
-      if(quesRes.id === key){
-        if(quesRes.button1Id === btnId){
-          setQuestionStates((prev) => ({
-            button1Id: [...prev, {button1Id: !prev.button1Id}]
-          }))
+  /**
+   * Manages alternative selection, chainging isButton<num>Pressed state
+   * @param {BUTTON ID} btnId
+   * @param {ID OF THE QUESTION COMPONENT} key
+   */
+  function selectAnOption(btnId, key) {
+    let aux = [];
+    questionStates.map((quesRes) => {
+      if (quesRes.id === key) {
+        if (quesRes.button1Id === btnId) {
+          console.log("BTN 1 CLICKED");
+          aux.push({
+            ...quesRes,
+            isButton1Pressed: !quesRes.isButton1Pressed,
+            isButton2Pressed: false,
+            isButton3Pressed: false,
+            isButton4Pressed: false,
+          });
         }
-        if(quesRes.button2Id === btnId){
-          console.log('BTN 2 CLICKED');
+        if (quesRes.button2Id === btnId) {
+          console.log("BTN 2 CLICKED");
+          aux.push({
+            ...quesRes,
+            isButton2Pressed: !quesRes.isButton2Pressed,
+            isButton1Pressed: false,
+            isButton3Pressed: false,
+            isButton4Pressed: false,
+          });
         }
-        if(quesRes.button3Id === btnId){
-          console.log('BTN 3 CLICKED')
+        if (quesRes.button3Id === btnId) {
+          console.log("BTN 3 CLICKED");
+          aux.push({
+            ...quesRes,
+            isButton3Pressed: !quesRes.isButton3Pressed,
+            isButton1Pressed: false,
+            isButton2Pressed: false,
+            isButton4Pressed: false,
+          });
         }
-        if(quesRes.button4Id === btnId){
-          console.log('BTN 4 CLICKED')
+        if (quesRes.button4Id === btnId) {
+          console.log("BTN 4 CLICKED");
+          aux.push({
+            ...quesRes,
+            isButton4Pressed: !quesRes.isButton4Pressed,
+            isButton1Pressed: false,
+            isButton2Pressed: false,
+            isButton3Pressed: false,
+          });
         }
+      } else {
+        aux.push({ ...quesRes });
       }
     });
+    setQuestionStates(aux);
   }
 
-  console.log('QUESTION STATE: ',questionStates);
+  console.log("QUESTION STATE: ", questionStates);
 
+  /**
+   * Loads Question component that is composed mainly by default
+   * by 5 alternatives an one h1 header with the question
+   */
   const questions = questionStates.map((quesRes) => (
     <Question
-      answer1C={quesRes.correctAlternative}
-      answer2F={quesRes.incorrectAlternative1}
-      answer3F={quesRes.incorrectAlternative2}
-      answer4F={quesRes.incorrectAlternative3}
-      butPressed1 = {quesRes.isButton1Pressed}
-      butPressed2 = {quesRes.isButton2Pressed}
-      butPressed3 = {quesRes.isButton3Pressed}
-      butPressed4 = {quesRes.isButton4Pressed}
-      btn1Id = {quesRes.button1Id}
-      btn2Id = {quesRes.button2Id}
-      btn3Id = {quesRes.button3Id}
-      btn4Id = {quesRes.button4Id}
+      answer1={quesRes.alternative1}
+      answer2={quesRes.alternative2}
+      answer3={quesRes.alternative3}
+      answer4={quesRes.alternative4}
+      butPressed1={quesRes.isButton1Pressed}
+      butPressed2={quesRes.isButton2Pressed}
+      butPressed3={quesRes.isButton3Pressed}
+      butPressed4={quesRes.isButton4Pressed}
+      btn1Id={quesRes.button1Id}
+      btn2Id={quesRes.button2Id}
+      btn3Id={quesRes.button3Id}
+      btn4Id={quesRes.button4Id}
       selectAnOption={selectAnOption}
       question={quesRes.question}
       key={quesRes.id}
@@ -117,9 +189,37 @@ export default function QuizzPage() {
     />
   ));
 
+  function checkIfAllAlternativesWereSelected() {
+    let existQuestionNotSelected = false;
+    function isThereSomeQuestionNotSelected(element) {
+      console.log('ENTERED')
+      console.log(element.alternative1,element.alternative2,element.alternative3,element.alternative4)
+      if (
+        !element.isButton1Pressed ||
+        !element.isButton2Pressed ||
+        !element.isButton3Pressed ||
+        !element.isButton4Pressed
+      ) {
+        console.log('SETTED')
+        existQuestionNotSelected = true;
+      }
+    }
+    questionStates.forEach(isThereSomeQuestionNotSelected);
+
+    if(existQuestionNotSelected){
+      alert('Please mark all questions before trying to check the answers again')
+    }
+  }
+
   return (
     <section className="quizz--section">
       {questions}
+      <button
+        onClick={checkIfAllAlternativesWereSelected}
+        className="manager--button"
+      >
+        Check answers
+      </button>
     </section>
   );
 }

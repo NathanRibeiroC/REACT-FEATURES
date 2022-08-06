@@ -5,13 +5,13 @@
 }
 
 body {
-  margin: 0;
   background-color: #F5F7FB;
   background-image: url("./images/blob_blue.svg"), url("./images/blob_yellow.svg");
   background-repeat: no-repeat;
   background-position-x: left, right;
   background-position-y: 80vh, top;
   background-size: auto;
+  margin-top: 10%;
 }
 
 /* START SCREEN */
@@ -116,4 +116,22 @@ body {
   border: none;
   margin-left: 5%;
   margin-bottom: 16px;
+}
+
+.manager--button{
+    font-weight: 500;
+    min-width: 120px;
+    min-height: 35px;
+    border-radius: 10px;
+    background-color: #4D5B9E;
+    color: white;
+    border: none;
+    cursor: pointer;
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    margin-top: 1%;
 }
