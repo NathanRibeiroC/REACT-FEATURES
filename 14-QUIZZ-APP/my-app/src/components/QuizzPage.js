@@ -9,6 +9,8 @@ export default function QuizzPage() {
    */
   const [questionStates, setQuestionStates] = React.useState([]);
 
+  const [shouldSubmitQuestions, setShouldSubmitQuestions] =
+    React.useState(false);
   /**
    * Converts object type to array type in order
    * code can iterate over it
@@ -69,12 +71,13 @@ export default function QuizzPage() {
     fetched.map((feRes) => {
       setQuestionStates((prev) => {
         //shuffles questions when assigning state, in order correct answer is not always on the same position
-        const shuffledQuestions = [
+        const shuffledQuestions = shuffleQuestions([
           feRes[1].correct_answer,
           feRes[1].incorrect_answers[0],
           feRes[1].incorrect_answers[1],
           feRes[1].incorrect_answers[2],
-        ];
+        ]);
+
         return [
           ...prev,
           {
@@ -92,6 +95,18 @@ export default function QuizzPage() {
             button2Id: nanoid(),
             button3Id: nanoid(),
             button4Id: nanoid(),
+            isButton1HoldingRightAnswer:
+              decodeURIComponent(feRes[1].correct_answer) ===
+              decodeURIComponent(shuffledQuestions[0]),
+            isButton2HoldingRightAnswer:
+              decodeURIComponent(feRes[1].correct_answer) ===
+              decodeURIComponent(shuffledQuestions[1]),
+            isButton3HoldingRightAnswer:
+              decodeURIComponent(feRes[1].correct_answer) ===
+              decodeURIComponent(shuffledQuestions[2]),
+            isButton4HoldingRightAnswer:
+              decodeURIComponent(feRes[1].correct_answer) ===
+              decodeURIComponent(shuffledQuestions[3]),
           },
         ];
       });
@@ -186,40 +201,60 @@ export default function QuizzPage() {
       question={quesRes.question}
       key={quesRes.id}
       mainQuestionId={quesRes.id}
+      showAnswersResults={shouldSubmitQuestions}
     />
   ));
 
+  /**
+   * Data critics to verify if it is possible to proceed
+   * to answers verifications
+   */
   function checkIfAllAlternativesWereSelected() {
     let existQuestionNotSelected = false;
+
     function isThereSomeQuestionNotSelected(element) {
-      console.log('ENTERED')
-      console.log(element.alternative1,element.alternative2,element.alternative3,element.alternative4)
+      console.log("ENTERED");
+      console.log(
+        element.isButton1Pressed,
+        element.isButton2Pressed,
+        element.isButton3Pressed,
+        element.isButton4Pressed
+      );
       if (
-        !element.isButton1Pressed ||
-        !element.isButton2Pressed ||
-        !element.isButton3Pressed ||
+        !element.isButton1Pressed &&
+        !element.isButton2Pressed &&
+        !element.isButton3Pressed &&
         !element.isButton4Pressed
       ) {
-        console.log('SETTED')
+        console.log("SETTED");
         existQuestionNotSelected = true;
       }
     }
     questionStates.forEach(isThereSomeQuestionNotSelected);
 
-    if(existQuestionNotSelected){
-      alert('Please mark all questions before trying to check the answers again')
+    if (existQuestionNotSelected) {
+      alert(
+        "Please mark all questions before trying to check the answers again"
+      );
+    } else {
+      setShouldSubmitQuestions(true);
     }
+
+    console.log("QUESTIONS SUBMIT STATES: ", shouldSubmitQuestions);
   }
 
   return (
     <section className="quizz--section">
       {questions}
-      <button
-        onClick={checkIfAllAlternativesWereSelected}
-        className="manager--button"
-      >
-        Check answers
-      </button>
+
+        {shouldSubmitQuestions && <h1>FINISHED</h1>}
+        <button
+          onClick={checkIfAllAlternativesWereSelected}
+          className="manager--button"
+        >
+          Check answers
+        </button>
+
     </section>
   );
 }

@@ -118,6 +118,17 @@ body {
   margin-bottom: 16px;
 }
 
+/* .checkButton--section{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+} */
+
+.button1--5{
+  background-color: #293264;
+}
+
 .manager--button{
     font-weight: 500;
     min-width: 120px;
