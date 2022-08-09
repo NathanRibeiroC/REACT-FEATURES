@@ -7,19 +7,19 @@ export default function App() {
   /**
    * For 'false' --> doesn't starts quizz for 'true' --> starts quizz
    */
-  const [startButtonState, setStartButtonState] = React.useState(false);
+  const [shouldStartGame, setShouldStartGame] = React.useState(false);
 
   /**
    * Function that toogles start button when start button is pressed
    */
   function startQuizz() {
-    setStartButtonState((prevButtonValue) => !prevButtonValue);
+    setShouldStartGame((prevButtonValue) => !prevButtonValue);
   }
 
   return (
     <main>
-      {/* <StartScreen startQuizz={startQuizz}/> */}
-      <QuizzPage/>
+      {!shouldStartGame && <StartScreen startQuizz={startQuizz}/>}
+      {shouldStartGame && <QuizzPage/>}
     </main>
   );
 }

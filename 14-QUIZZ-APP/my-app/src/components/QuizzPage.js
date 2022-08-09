@@ -11,7 +11,10 @@ export default function QuizzPage() {
 
   const [shouldSubmitQuestions, setShouldSubmitQuestions] =
     React.useState(false);
-  /**
+    
+  const [numberOfRightAnswers, setNumberOfRightAnswers] =
+      React.useState(0);
+    /**
    * Converts object type to array type in order
    * code can iterate over it
    * @param {object type data} data
@@ -178,6 +181,7 @@ export default function QuizzPage() {
   }
 
   console.log("QUESTION STATE: ", questionStates);
+  console.log("CHECK STATE: ", shouldSubmitQuestions);
 
   /**
    * Loads Question component that is composed mainly by default
@@ -202,8 +206,25 @@ export default function QuizzPage() {
       key={quesRes.id}
       mainQuestionId={quesRes.id}
       showAnswersResults={shouldSubmitQuestions}
+      isAnsBtn1Right = {quesRes.isButton1HoldingRightAnswer}
+      isAnsBtn2Right = {quesRes.isButton2HoldingRightAnswer}
+      isAnsBtn3Right = {quesRes.isButton3HoldingRightAnswer}
+      isAnsBtn4Right = {quesRes.isButton4HoldingRightAnswer}
     />
   ));
+
+  function countRightAnswers(){
+    let countRightAnswers = 0
+
+    function iterateThroughState(questState){
+      if((questState.isButton1Pressed && questState.isButton1HoldingRightAnswer) ||  (questState.isButton2Pressed && questState.isButton2HoldingRightAnswer) || (questState.isButton3Pressed && questState.isButton3HoldingRightAnswer) || (questState.isButton4Pressed && questState.isButton4HoldingRightAnswer)){
+        countRightAnswers++
+      }
+    }
+    questionStates.forEach(iterateThroughState);
+
+    setNumberOfRightAnswers(countRightAnswers)
+  }
 
   /**
    * Data critics to verify if it is possible to proceed
@@ -230,6 +251,7 @@ export default function QuizzPage() {
         existQuestionNotSelected = true;
       }
     }
+
     questionStates.forEach(isThereSomeQuestionNotSelected);
 
     if (existQuestionNotSelected) {
@@ -238,6 +260,7 @@ export default function QuizzPage() {
       );
     } else {
       setShouldSubmitQuestions(true);
+      countRightAnswers();
     }
 
     console.log("QUESTIONS SUBMIT STATES: ", shouldSubmitQuestions);
@@ -246,13 +269,12 @@ export default function QuizzPage() {
   return (
     <section className="quizz--section">
       {questions}
-
-        {shouldSubmitQuestions && <h1>FINISHED</h1>}
+        {shouldSubmitQuestions && <h1>You scored {numberOfRightAnswers}/5 correct answers</h1>}
         <button
           onClick={checkIfAllAlternativesWereSelected}
           className="manager--button"
         >
-          Check answers
+          {shouldSubmitQuestions ? "Play Again" : "Check answers"}
         </button>
 
     </section>
