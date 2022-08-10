@@ -8,3 +8,6 @@
 
 ## Tenzies Game
 ![tenzies](https://user-images.githubusercontent.com/80288857/181671151-87272c22-afe9-490c-85d1-8ba247b56be8.gif)
+
+## Quizz
+![QUIZZICAL](https://user-images.githubusercontent.com/80288857/184041467-9bdf483e-6352-4557-97cb-7d904fa7788a.gif)
