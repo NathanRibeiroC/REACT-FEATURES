@@ -97,7 +97,7 @@ body {
   width: auto;
   height: auto;
   min-width:100px;
-  height: 20px;
+  height: 30px;
   border-radius: 7px;
   border-width: 0.77px;
   border-color: #4D5B9E;
@@ -123,17 +123,6 @@ body {
   border: none;
   margin-left: 10%;
   margin-bottom: 16px;
-}
-
-/* .checkButton--section{
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
-} */
-
-.button1--5{
-  background-color: #293264;
 }
 
 .manager--button{

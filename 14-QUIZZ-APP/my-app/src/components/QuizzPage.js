@@ -254,13 +254,21 @@ export default function QuizzPage() {
 
     questionStates.forEach(isThereSomeQuestionNotSelected);
 
+    console.log("EXIST QUESTION SELECTED: ", existQuestionNotSelected)
+
     if (existQuestionNotSelected) {
       alert(
         "Please mark all questions before trying to check the answers again"
       );
     } else {
-      setShouldSubmitQuestions(true);
-      countRightAnswers();
+      if(!shouldSubmitQuestions){ //CHECK QUESTIONS BUTTON
+        setShouldSubmitQuestions(true);
+        countRightAnswers();
+      }else{ //PLAY AGAIN BUTTON
+        setShouldSubmitQuestions(false);
+        setQuestionStates([]);
+        parseFetchAsync();
+      }
     }
 
     console.log("QUESTIONS SUBMIT STATES: ", shouldSubmitQuestions);
