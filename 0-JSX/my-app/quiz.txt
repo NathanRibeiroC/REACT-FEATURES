@@ -18,4 +18,4 @@ R: checkbox uses the checkbox property
 5. How do you watch for a form submit? How can you trigger
    a form submit?
 R: watch using onSubmit attribute on the form tag, and you trigger pressing
-a submit button
+a submit button.
