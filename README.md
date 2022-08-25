@@ -11,3 +11,9 @@
 
 ## Quizz
 ![QUIZZICAL](https://user-images.githubusercontent.com/80288857/184041467-9bdf483e-6352-4557-97cb-7d904fa7788a.gif)
+
+## To Use The Template
+
+`npm install`
+
+`npm start`
